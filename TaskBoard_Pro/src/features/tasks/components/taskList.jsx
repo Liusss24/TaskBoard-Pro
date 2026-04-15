@@ -1,25 +1,30 @@
 import { TASK_UI_TEXT } from "../constants/task-ui.constants"
 import { HTML_TAGS } from "../../../shared/constants/html-tags.constants"
+import { TaskItem } from "./taskItem"
 
-export function TaskList({ tasks }) {
+export function TaskList({ tasks, onToggleTask, onDeleteTask }) {
   const SectionTag = HTML_TAGS.SECTION
-  const H3Tag = HTML_TAGS.H3
-  const PTag = HTML_TAGS.P
-  const UlTag = HTML_TAGS.UL
-  const LiTag = HTML_TAGS.LI
+  const TitleTag = HTML_TAGS.H3
+  const ListTag = HTML_TAGS.UL
+  const ParagraphTag = HTML_TAGS.P
 
   return (
     <SectionTag>
-      <H3Tag>{TASK_UI_TEXT.LIST_TITLE}</H3Tag>
+      <TitleTag>{TASK_UI_TEXT.LIST_TITLE}</TitleTag>
 
       {tasks.length === 0 ? (
-        <PTag>{TASK_UI_TEXT.EMPTY_MESSAGE}</PTag>
+        <ParagraphTag>{TASK_UI_TEXT.EMPTY_MESSAGE}</ParagraphTag>
       ) : (
-        <UlTag>
+        <ListTag>
           {tasks.map((task) => (
-            <LiTag key={task.id}>{task.title}</LiTag>
+            <TaskItem
+              key={task.id}
+              task={task}
+              onToggleTask={onToggleTask}
+              onDeleteTask={onDeleteTask}
+            />
           ))}
-        </UlTag>
+        </ListTag>
       )}
     </SectionTag>
   )
