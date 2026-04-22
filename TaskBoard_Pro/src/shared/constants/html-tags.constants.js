@@ -8,7 +8,10 @@ export const HTML_TAGS = {
     P: "p",
     UL: "ul",
     LI: "li",
+    SPAN: "span",
     LABEL: "label",
     INPUT: "input",
+    SELECT: "select",
+    OPTION: "option",
     BUTTON: "button",
 }

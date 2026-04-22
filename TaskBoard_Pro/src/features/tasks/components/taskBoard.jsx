@@ -7,12 +7,16 @@ import { taskReducer } from "../reducer/task.reducer"
 import { TASK_ACTION_TYPES } from "../reducer/task-action-types"
 import { TASK_STATUS } from "../constants/task.constants"
 import { TaskFilters } from "./taskFilters"
+import { TaskStats } from "./taskStats"
+import { useTaskStats } from "../../../shared/hooks/useTaskStats"
 
 export function TaskBoard() {
-const [taskText, setTaskText] = useState("")
-const [tasks, dispatch] = useReducer(taskReducer, [])
+  const [taskText, setTaskText] = useState("")
+  const [tasks, dispatch] = useReducer(taskReducer, [])
 const [searchText, setSearchText] = useState("")
 const [statusFilter, setStatusFilter] = useState(TASK_STATUS.ALL)   
+
+const stats = useTaskStats(tasks)
 
   const SectionTag = HTML_TAGS.SECTION
   const TitleTag = HTML_TAGS.H2
@@ -95,7 +99,7 @@ const [statusFilter, setStatusFilter] = useState(TASK_STATUS.ALL)
         onSearchTextChange={handleSearchTextChange}
         onStatusFilterChange={handleStatusFilterChange}
       />
-
+<TaskStats stats={stats} />
       <TaskList
         tasks={filteredTasks}
         onToggleTask={handleToggleTask}
