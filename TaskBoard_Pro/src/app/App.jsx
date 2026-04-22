@@ -1,15 +1,24 @@
-import './App.css'
-import { TaskBoard } from '../features/tasks/components/taskBoard'
-import { HTML_TAGS } from '../shared/constants/html-tags.constants'
+import { HTML_TAGS } from "./shared/constants/html-tags.constants"
+import { TaskBoard } from "./features/tasks/components/TaskBoard"
+import { ThemeProvider } from "./features/theme/context/ThemeProvider"
 
-function App() {
+function AppContent() {
   const MainTag = HTML_TAGS.MAIN
-  const H1Tag = HTML_TAGS.H1
+  const TitleTag = HTML_TAGS.H1
+
   return (
     <MainTag>
-      <H1Tag>TaskBoard Pro</H1Tag>
+      <TitleTag>TaskBoard Hooks Lab</TitleTag>
       <TaskBoard />
     </MainTag>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 
